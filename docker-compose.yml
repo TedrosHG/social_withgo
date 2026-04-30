@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:15-alpine
+    # restart: always
+    container_name: socialgo-db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: adminpassword
+      POSTGRES_DB: socialgo
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

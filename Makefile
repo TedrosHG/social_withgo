@@ -7,8 +7,12 @@ migration:
 	
 .PHONY: migrate-up
 migrate-up:
-	@migrate -path $(MIGRATIONS_PATH) -database $(DB_ADDR) up
+	@migrate -path $(MIGRATIONS_PATH) -database $(DB_ADDR) up 
 
 .PHONY: migrate-down
 migrate-down:
 	@migrate -path $(MIGRATIONS_PATH) -database $(DB_ADDR) down $(filter-out $@,$(MAKECMDGOALS))
+
+.PHONY: seed
+seed:
+	@go run cmd/migrate/seed/main.go

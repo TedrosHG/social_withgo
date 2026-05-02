@@ -6,4 +6,3 @@ CREATE TABLE IF NOT EXISTS posts (
     created_at timestamp(0) with time zone NOT NULL DEFAULT now(),
     updated_at timestamp(0) with time zone NOT NULL DEFAULT now()
 );
-);

@@ -1,0 +1,1 @@
+ALTER TABLE Posts drop COLUMN version;

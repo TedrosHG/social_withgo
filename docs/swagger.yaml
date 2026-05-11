@@ -19,11 +19,19 @@ definitions:
   main.RegisterUserPayload:
     properties:
       email:
+        maxLength: 255
         type: string
       password:
+        maxLength: 72
+        minLength: 3
         type: string
       username:
+        maxLength: 100
         type: string
+    required:
+    - email
+    - password
+    - username
     type: object
   main.UpdatePostPayload:
     properties:

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"learn-go/internal/mailer"
 	"learn-go/internal/store"
 	"net/http"
 	"time"
@@ -18,18 +19,31 @@ type application struct {
 	config config
 	store  store.Storage
 	logger *zap.SugaredLogger
+	mailer mailer.Client
 }
 
 type config struct {
-	addr   string
-	db     dbConfig
-	env    string
-	apiURL string
-	mail   mailConfig
+	addr        string
+	db          dbConfig
+	env         string
+	apiURL      string
+	mail        mailConfig
+	frontendURL string
 }
 
 type mailConfig struct {
-	exp time.Duration
+	sendGrid  sendGridConfig
+	mailTrap  mailTrapConfig
+	exp       time.Duration
+	fromEmail string
+}
+
+type sendGridConfig struct {
+	apiKey string
+}
+
+type mailTrapConfig struct {
+	apiKey string
 }
 
 type dbConfig struct {

@@ -9,8 +9,8 @@ import (
 
 func main() {
 	addr := env.GetString("DB_ADDR", "postgres://admin:adminpassword@localhost:5434/socialgo?sslmode=disable")
-	conn, err := db.New(addr,3,3,"15m")
-	if err!= nil {
+	conn, err := db.New(addr, 3, 3, "15m")
+	if err != nil {
 		log.Fatal(err)
 	}
 
@@ -18,5 +18,5 @@ func main() {
 
 	store := store.NewStorage(conn)
 
-	db.Seed(store)
+	db.Seed(store, conn)
 }

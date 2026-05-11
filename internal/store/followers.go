@@ -8,9 +8,9 @@ import (
 )
 
 type Follower struct {
-	UserId int64 `json:"user_id"`
-	FollowerId int64 `json:"follower_id"`
-	createdAt string `json:"created_at"`
+	UserId     int64  `json:"user_id"`
+	FollowerId int64  `json:"follower_id"`
+	CreatedAt  string `json:"created_at"`
 }
 
 type FollowerStore struct {
@@ -26,14 +26,14 @@ func (s *FollowerStore) Follow(ctx context.Context, followerId, userId int64) er
 	defer cancel()
 
 	_, err := s.db.ExecContext(ctx, query, userId, followerId)
-	if err != nil{
+	if err != nil {
 		if pqErr, ok := err.(*pq.Error); ok && pqErr.Code == "23505" {
 			return ErrConflict
-		}else {
+		} else {
 			return err
 		}
 	}
-	return nil 
+	return nil
 }
 
 func (s *FollowerStore) Unfollow(ctx context.Context, followerId, userId int64) error {
@@ -46,5 +46,5 @@ func (s *FollowerStore) Unfollow(ctx context.Context, followerId, userId int64) 
 	defer cancel()
 
 	_, err := s.db.ExecContext(ctx, query, userId, followerId)
-	return err 
+	return err
 }

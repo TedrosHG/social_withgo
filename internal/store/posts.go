@@ -87,7 +87,6 @@ func (s *PostStore) GetUserFeed(ctx context.Context, userId int64, fq PaginatedF
 
 	return feed, nil
 
-
 }
 
 func (s *PostStore) Create(ctx context.Context, post *Post) error {

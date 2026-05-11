@@ -64,7 +64,7 @@ func (s *CommentStore) GetByPostId(ctx context.Context, postId int64) ([]Comment
 	defer rows.Close()
 
 	comments := []Comment{}
-	
+
 	for rows.Next() {
 		var c Comment
 		c.User = User{}
